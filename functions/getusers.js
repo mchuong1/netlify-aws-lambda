@@ -17,7 +17,7 @@ const queryDatabase = async (db) => {
 const pushToDatabase = async (db, data) => {
   const clientData = {
     name: data.name,
-    number: data.number,
+    phoneNumber: data.phoneNumber,
   };
 
   if (clientData.name && clientData.number) {

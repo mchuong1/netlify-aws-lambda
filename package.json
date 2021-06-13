@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "json2csv": "^5.0.6",
     "mongodb": "^3.6.9",
     "netlify-lambda": "^2.0.8"
   }
