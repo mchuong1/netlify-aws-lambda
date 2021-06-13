@@ -1,4 +1,4 @@
-const database = require('../lib/database');
+const { connectToDatabase } = require('../lib/database');
 const MONGODB_URI = process.env.MONGODB_URI;
 
 
@@ -33,7 +33,7 @@ module.exports.handler = async (event, context) => {
   // we keep the DB connection alive
   context.callbackWaitsForEmptyEventLoop = false;
 
-  const db = await database.connectToDatabase(MONGODB_URI);
+  const db = await connectToDatabase(MONGODB_URI);
   switch (event.httpMethod) {
     case "GET":
       return queryDatabase(db);

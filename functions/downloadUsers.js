@@ -1,4 +1,4 @@
-const database = require('../lib/database');
+const { connectToDatabase, downloadResource } = require('../lib/database');
 const MONGODB_URI = process.env.MONGODB_URI;
 
 module.exports.handler = async (event, context) => {
@@ -6,7 +6,7 @@ module.exports.handler = async (event, context) => {
   // we keep the DB connection alive
   context.callbackWaitsForEmptyEventLoop = false;
 
-  const db = await database.connectToDatabase(MONGODB_URI);
+  const db = await connectToDatabase(MONGODB_URI);
   const clients = await db.collection("clients").find({}).toArray();
   const fields = [
     {
@@ -18,7 +18,7 @@ module.exports.handler = async (event, context) => {
       value: 'phoneNumber'
     }
   ];
-  const csv = database.downloadResource(fields, clients);
+  const csv = downloadResource(fields, clients);
 
   return {
     headers: {
